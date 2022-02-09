@@ -120,13 +120,15 @@
                             <div class="row mt-3">
 
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <form method="POST" action="{{ route('delete-bonus', ['id' => $py->id]) }}">
-                                        @csrf
-                                        @method("delete")
-                                        <button type="submit" class="btn btn-danger"
-                                            onclick="return confirm('Apakah anda yakin menghapus?');"><i
-                                                class="fas fa-trash"></i></button>
-                                    </form>
+                                    @if (Auth::user()->role == 1)
+                                        <form method="POST" action="{{ route('delete-bonus', ['id' => $py->id]) }}">
+                                            @csrf
+                                            @method("delete")
+                                            <button type="submit" class="btn btn-danger"
+                                                onclick="return confirm('Apakah anda yakin menghapus?');"><i
+                                                    class="fas fa-trash"></i></button>
+                                        </form>
+                                    @endif
                                     <a href="{{ route('detail-bonus', $py->id) }}" class="btn btn-dark"><i
                                             class="fas fa-eye"></i></a>
                                     <a href="{{ route('edit-bonus', $py->id) }}" class="btn btn-primary"><i
